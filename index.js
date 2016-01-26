@@ -1,5 +1,3 @@
-var Postgres = require('./Postgres')("localhost", "postgres", "postgres", "root");
+var server = require('./server')
 
-Postgres.exec("SELECT version()", function(result) {
-  console.log(result);
-});
+server.start(8080);
