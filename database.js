@@ -6,3 +6,18 @@ fs.readFile("sql/schema.sql", 'utf-8', function(err, data) {
     console.log("Error reading schema.sql");
   postgres.exec(data);
 });
+
+module.exports = {
+  userById: function(id, callback) {
+    postgres.exec("SELECT * FROM \"Users\" WHERE \"id\" = " + id, function(err, result) {
+      if (!err)
+        callback();
+      else {
+        if (result.length == 0)
+          callback();
+        else
+          callback(result[0]);
+      }
+    })
+  }
+}

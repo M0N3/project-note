@@ -14,11 +14,14 @@ module.exports = function(host, db, user, pass) {
         client.query(query, [], function(err, result) {
           done();
 
-          if (err)
+          if (err) {
             console.log("Query error!\n" + err);
-          else
             if (callback)
-              callback(result.rows);
+              callback("Query error!\n" + err);
+          } else
+            if (callback)
+              callback(undefined, result.rows);
+
         })
       })
     }

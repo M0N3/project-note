@@ -9,3 +9,12 @@ module.exports = {
     console.log("Server running on port " + port);
   }
 }
+
+/*
+{
+  "key1" : value1,
+  key2 : {
+
+  }
+}
+*/
