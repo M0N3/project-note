@@ -17,7 +17,8 @@ module.exports = function(host, db, user, pass) {
           if (err)
             console.log("Query error!\n" + err);
           else
-            callback(result.rows);
+            if (callback)
+              callback(result.rows);
         })
       })
     }
