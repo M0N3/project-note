@@ -19,5 +19,29 @@ module.exports = {
           callback(result[0]);
       }
     })
+  },
+
+  addUser: function(name, password, callback) {
+    this.userByName(name, function(userExists) {
+      if (!userExists) {
+         postgres.exec("INSERT INTO \"Users\" (\"Name\", \"Password\") VALUES(\'" + name + "\', \'" + password + "\');", function(err, result) {
+         if (!err)
+            callback(true);
+          else
+            callback(false);
+        });
+      } else
+        callback(false);
+    })
+    
+  },
+
+  userByName: function(name, callback) {
+    postgres.exec("SELECT * FROM \"Users\" WHERE \"Name\"= \'" + name + "\'", function(err, result) {
+      if (err || result.length == 0)
+        callback(undefined);
+      else
+        callback(result[0]);
+    })
   }
 }
