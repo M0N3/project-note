@@ -1,6 +1,5 @@
 var pg = require('pg')
 
-
 module.exports = function(host, db, user, pass) {
   var conString = "postgres://" + user + ":" + pass + "@" + host + "/" + db;
   console.log(conString);
@@ -13,7 +12,6 @@ module.exports = function(host, db, user, pass) {
         }
         client.query(query, [], function(err, result) {
           done();
-
           if (err) {
             console.log("Query error!\n" + err);
             if (callback)
@@ -21,7 +19,6 @@ module.exports = function(host, db, user, pass) {
           } else
             if (callback)
               callback(undefined, result.rows);
-
         })
       })
     }
